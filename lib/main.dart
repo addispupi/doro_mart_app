@@ -1,4 +1,4 @@
-import 'package:doro_mart_app/screens/home/home_page.dart';
+import 'package:doro_mart_app/pages/home/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
