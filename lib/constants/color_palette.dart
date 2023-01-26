@@ -8,6 +8,8 @@ class ColorPalette {
   final Color textInverseColor = Color(0xFFFFFFFF);
   final Color primaryColor = Color(0xFFC68E11);
   final Color secondaryColor = Color(0xFFED0C0D);
-  final Color btnBg = Color(0xFF78241e);
+  final Color btnBg = Color(0xFFE00808);
   final Color btnFill = Color(0xFFf7f4f4);
+  final Color btnActive = Color(0xFFFFB30F);
+  final Color inputTextBg = Color(0xFFD3D3D3);
 }

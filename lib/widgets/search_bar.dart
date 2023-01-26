@@ -22,22 +22,22 @@ class _SearchBarState extends State<SearchBar> {
         width: MediaQuery.of(context).size.width - 30.0,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20.0),
-            color: ColorPalette().primaryColor),
+            color: ColorPalette().inputTextBg),
         child: TextField(
           decoration: InputDecoration(
               filled: true,
               hintText: 'Find Products . . .',
               contentPadding: EdgeInsets.fromLTRB(10.0, 7.0, 7.0, 12.0),
               hintStyle: GoogleFonts.sourceSansPro(
-                  color: ColorPalette().textInverseColor, fontSize: 20.0),
+                  color: ColorPalette().textColor, fontSize: 20.0),
               border: InputBorder.none,
-              fillColor: ColorPalette().primaryColor,
+              fillColor: ColorPalette().inputTextBg,
               prefixIcon: Padding(
                 padding: EdgeInsets.only(right: 6.0, left: 6.0),
                 child: Icon(
                   Icons.search_rounded,
                   size: 30.0,
-                  color: ColorPalette().btnFill,
+                  color: ColorPalette().secondaryColor,
                 ),
               ),
               prefixIconConstraints:
