@@ -1,5 +1,6 @@
-import 'package:doro_mart/dashboard_page.dart';
 import 'package:flutter/material.dart';
+
+import 'dashboard_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,6 +15,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: const DashboardPage(),
+      theme: ThemeData(
+        brightness: Brightness.dark,
+        primarySwatch: Colors.orange,
+      ),
     );
   }
 }
