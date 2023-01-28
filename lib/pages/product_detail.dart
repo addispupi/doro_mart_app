@@ -1,9 +1,6 @@
 import 'package:DoroMart/constants/color_palette.dart';
-import 'package:DoroMart/dashboard_page.dart';
 import 'package:DoroMart/models/product_item.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:glassmorphism_ui/glassmorphism_ui.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -91,7 +88,7 @@ class _ProductDetailState extends State<ProductDetail> {
                 ),
               )),
           Positioned(
-            top: (screenHeight / 2) - 30.0,
+            top: (screenHeight / 2) - 8.0,
             child: GlassContainer(
               height: 150.0,
               width: screenWidth,
@@ -104,7 +101,7 @@ class _ProductDetailState extends State<ProductDetail> {
                   Container(
                     padding: EdgeInsets.only(left: 25.0),
                     height: 140.0,
-                    width: (screenWidth - 20.0) / 2,
+                    width: screenWidth - 20.0,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -114,14 +111,17 @@ class _ProductDetailState extends State<ProductDetail> {
                           style: GoogleFonts.bebasNeue(
                               fontSize: 25.0, fontWeight: FontWeight.bold),
                         ),
-                        Text(
-                          widget.foodItem.prodIngredients!,
-                          style: GoogleFonts.bebasNeue(
-                              fontSize: 17.0,
-                              fontWeight: FontWeight.w400,
-                              color: ColorPalette().inputText),
-                        ),
                         SizedBox(height: 8.0),
+                        Container(
+                          padding: EdgeInsets.all(8.0),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(7.0),
+                              color: ColorPalette().textColor),
+                          child: Text(widget.foodItem.prodMenu.toString(),
+                              style: GoogleFonts.sourceSansPro(
+                                  fontSize: 16.0, fontWeight: FontWeight.w400)),
+                        ),
+                        SizedBox(height: 5.0),
                         Row(
                           children: [
                             Icon(
@@ -135,36 +135,110 @@ class _ProductDetailState extends State<ProductDetail> {
                               style: GoogleFonts.bebasNeue(
                                   fontSize: 25.0, fontWeight: FontWeight.bold),
                             ),
+                            SizedBox(width: 5.0),
+                            Text(
+                              '(2560)'.toString(),
+                              style: GoogleFonts.bebasNeue(
+                                  fontSize: 15.0,
+                                  color: ColorPalette().inputText,
+                                  fontWeight: FontWeight.w400),
+                            ),
                           ],
                         )
                       ],
                     ),
                   ),
-                  Container(
-                    padding: EdgeInsets.only(left: 15.0, right: 15.0),
-                    height: 140.0,
-                    width: (screenWidth - 20.0) / 2,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                ],
+              ),
+            ),
+          ),
+          SizedBox(height: 10.0),
+          Positioned(
+            top: screenHeight / 2 + 160.0,
+            child: Container(
+              height: screenHeight / 2 - 140.0,
+              width: screenWidth,
+              child: ListView(
+                padding: EdgeInsets.only(left: 15.0),
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Description',
+                        style: GoogleFonts.bebasNeue(
+                            fontSize: 25.0,
+                            color: ColorPalette().primaryColor,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(height: 10.0),
+                      Container(
+                        height: 50.0,
+                        width: screenWidth - 30.0,
+                        child: Text(widget.foodItem.prodDesc!,
+                            style: GoogleFonts.sourceSansPro(
+                                fontSize: 17.0,
+                                color: ColorPalette().inputText)),
+                      ),
+                      SizedBox(height: 10.0),
+                      Container(
+                        width: screenWidth - 30.0,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Container(
-                              padding: EdgeInsets.all(8.0),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(7.0),
-                                  color: ColorPalette().textColor),
-                              child: Text(widget.foodItem.prodMenu.toString(),
-                                  style: GoogleFonts.sourceSansPro(
-                                      fontSize: 16.0,
-                                      fontWeight: FontWeight.w400)),
+                              height: 50.0,
+                              child: Column(
+                                children: [
+                                  Text('Price',
+                                      style: GoogleFonts.bebasNeue(
+                                          fontSize: 18.0,
+                                          fontWeight: FontWeight.w400)),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        widget.foodItem.prodPrice!,
+                                        style: GoogleFonts.bebasNeue(
+                                            fontSize: 25.0,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(
+                                        'ETB',
+                                        style: GoogleFonts.bebasNeue(
+                                            fontSize: 15.0,
+                                            fontWeight: FontWeight.bold,
+                                            color: ColorPalette().primaryColor),
+                                      )
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                // . . .
+                              },
+                              child: Container(
+                                height: 50.0,
+                                width: (screenWidth / 2) - 20.0,
+                                decoration: BoxDecoration(
+                                    color: ColorPalette().secondaryColor,
+                                    borderRadius: BorderRadius.circular(10.0)),
+                                child: Center(
+                                  child: Text(
+                                    'Order Now',
+                                    style: GoogleFonts.bebasNeue(
+                                        fontSize: 20.0,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ),
                             )
                           ],
-                        )
-                      ],
-                    ),
+                        ),
+                      ),
+                      SizedBox(height: 5.0),
+                    ],
                   )
                 ],
               ),
