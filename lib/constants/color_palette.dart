@@ -14,4 +14,5 @@ class ColorPalette {
   final Color btnFill = Color(0xFFf7f4f4);
   final Color btnActive = Color(0xFFFFB30F);
   final Color inputText = Color(0xFFD3D3D3);
+  final Color headerText = Color(0xFFadadad);
 }
