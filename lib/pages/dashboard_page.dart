@@ -4,7 +4,7 @@ import 'package:DoroMart/widgets/search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'constants/color_palette.dart';
+import '../constants/color_palette.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -161,37 +161,34 @@ class _DashboardPageState extends State<DashboardPage> {
 
               // Product Types Tabs
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.0),
-                child: ShaderMask(
-                  shaderCallback: (Rect bounds) {
-                    return LinearGradient(
-                            begin: Alignment(0.6, -1.0),
-                            end: Alignment(1.1, -1.0),
-                            colors: <Color>[Colors.black, Colors.transparent])
-                        .createShader(bounds);
-                  },
-                  blendMode: BlendMode.dstATop,
-                  child: Container(
-                    color: ColorPalette().scaffoldBg,
-                    width: MediaQuery.of(context).size.width - 35.0,
-                    height: 40.0,
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      children: [
-                        ...productTypes.map((e) {
-                          counter++;
-                          if (counter <= 3)
-                            return _buildTypes(e, counter);
-                          else {
-                            counter = 0;
-                            return _buildTypes(e, counter);
-                          }
-                        }).toList()
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+                  padding: EdgeInsets.symmetric(horizontal: 20.0),
+                  child: ShaderMask(
+                    shaderCallback: (Rect bounds) {
+                      return LinearGradient(
+                              begin: Alignment(0.6, -1.0),
+                              end: Alignment(1.1, -1.0),
+                              colors: <Color>[Colors.black, Colors.transparent])
+                          .createShader(bounds);
+                    },
+                    blendMode: BlendMode.dstIn,
+                    child: Container(
+                        width: MediaQuery.of(context).size.width - 35.0,
+                        height: 40.0,
+                        child: ListView(
+                          scrollDirection: Axis.horizontal,
+                          children: [
+                            ...productTypes.map((e) {
+                              counter++;
+                              if (counter <= 3)
+                                return _buildTypes(e, counter);
+                              else {
+                                counter = 0;
+                                return _buildTypes(e, counter);
+                              }
+                            }).toList()
+                          ],
+                        )),
+                  )),
               SizedBox(height: 10.0),
 
               // Products
@@ -302,7 +299,7 @@ class _DashboardPageState extends State<DashboardPage> {
                     fontWeight: FontWeight.bold,
                     color: product == selectedItem
                         ? ColorPalette().secondaryColor
-                        : ColorPalette().textColor,
+                        : ColorPalette().primaryColor,
                     fontSize: 18.0),
               ),
             ),
