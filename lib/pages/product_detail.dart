@@ -176,9 +176,7 @@ class _ProductDetailState extends State<ProductDetail> {
                         height: 50.0,
                         width: screenWidth - 30.0,
                         child: Text(widget.foodItem.prodDesc!,
-                            style: GoogleFonts.sourceSansPro(
-                                fontSize: 17.0,
-                                color: ColorPalette().inputText)),
+                            style: GoogleFonts.sourceSansPro(fontSize: 17.0)),
                       ),
                       SizedBox(height: 10.0),
                       Container(
@@ -226,7 +224,7 @@ class _ProductDetailState extends State<ProductDetail> {
                                     borderRadius: BorderRadius.circular(10.0)),
                                 child: Center(
                                   child: Text(
-                                    'Order Now',
+                                    'Add to Cart',
                                     style: GoogleFonts.bebasNeue(
                                         fontSize: 20.0,
                                         fontWeight: FontWeight.bold),

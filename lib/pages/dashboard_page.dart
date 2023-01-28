@@ -1,10 +1,10 @@
+import 'package:DoroMart/constants/color_palette.dart';
 import 'package:DoroMart/models/product_item.dart';
 import 'package:DoroMart/pages/product_detail.dart';
+import 'package:DoroMart/pages/settings_page.dart';
 import 'package:DoroMart/widgets/search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../constants/color_palette.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -62,34 +62,70 @@ class _DashboardPageState extends State<DashboardPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         // bottomNavigationBar: _buildBottomBar(),
-        bottomNavigationBar: BottomNavigationBar(
-            type: BottomNavigationBarType.fixed,
-            backgroundColor: ColorPalette().secondaryColor,
-            selectedItemColor: ColorPalette().btnActive,
-            unselectedItemColor: ColorPalette().btnFill,
-            selectedFontSize: 15.0,
-            unselectedFontSize: 14.0,
-            onTap: (value) {
-              //..
-            },
-            items: [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                label: 'Home',
+        bottomNavigationBar: ClipRRect(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(35), topRight: Radius.circular(35)),
+            child: BottomNavigationBar(
+                type: BottomNavigationBarType.fixed,
+                backgroundColor: ColorPalette().secondaryColor,
+                selectedItemColor: ColorPalette().btnActive,
+                unselectedItemColor: ColorPalette().btnFill,
+                selectedFontSize: 15.0,
+                unselectedFontSize: 14.0,
+                onTap: (value) {
+                  //..
+                },
+                items: [
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.home),
+                    label: 'Home',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.fastfood_rounded),
+                    label: 'Menus',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.favorite),
+                    label: 'My Orders',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.notifications),
+                    label: 'Notifications',
+                  ),
+                ])),
+        drawer: Drawer(
+          child: ListView(
+            children: [
+              UserAccountsDrawerHeader(
+                decoration: BoxDecoration(color: ColorPalette().secondaryColor),
+                accountName: Text(
+                  'Addis',
+                  style: GoogleFonts.bebasNeue(
+                      fontSize: 25.0, fontWeight: FontWeight.bold),
+                ),
+                accountEmail: Text('addis@gmail.com',
+                    style: GoogleFonts.sourceSansPro(
+                        fontSize: 19.0,
+                        fontStyle: FontStyle.italic,
+                        color: ColorPalette().inputText)),
+                currentAccountPicture: CircleAvatar(
+                  backgroundColor: ColorPalette().secondaryColor,
+                  backgroundImage: AssetImage('assets/images/model.jpg'),
+                ),
               ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.fastfood_rounded),
-                label: 'Menus',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.favorite),
-                label: 'My Orders',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.notifications),
-                label: 'Notifications',
-              ),
-            ]),
+              ListTile(
+                title: Text('Settings'),
+                onTap: () {
+                  Navigator.of(context).pop();
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => SettingsPage()));
+                },
+              )
+            ],
+          ),
+        ),
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -214,62 +250,6 @@ class _DashboardPageState extends State<DashboardPage> {
                         ),
                       ),
                     ),
-                    Padding(
-                      padding:
-                          EdgeInsets.only(left: 15.0, right: 15.0, top: 10.0),
-                      child: Text(
-                        'Special Foods',
-                        style: GoogleFonts.bebasNeue(
-                            fontWeight: FontWeight.bold, fontSize: 20.0),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsets.only(left: 15.0, right: 15.0, top: 10.0),
-                      child: Container(
-                        padding: EdgeInsets.all(10.0),
-                        height: 125.0,
-                        width: MediaQuery.of(context).size.width - 20.0,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(25.0),
-                            gradient: LinearGradient(
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                                colors: <Color>[
-                                  ColorPalette().primaryGradientStart,
-                                  ColorPalette().primaryGradientEnd
-                                ])),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              height: 115.0,
-                              width: 125.0,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15.0),
-                                  image: DecorationImage(
-                                      image: AssetImage(
-                                          'assets/images/beansbottom.jpg'),
-                                      fit: BoxFit.cover)),
-                            ),
-                            Container(
-                              height: 115.0,
-                              child: Container(
-                                height: 100.0,
-                                width:
-                                    MediaQuery.of(context).size.width - 185.0,
-                                child: Text(
-                                  'Special Doro Wet',
-                                  style: GoogleFonts.bebasNeue(
-                                      fontSize: 20.0,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    )
                   ],
                 ),
               )
@@ -371,7 +351,7 @@ class _DashboardPageState extends State<DashboardPage> {
                             width: 50.0,
                             decoration: BoxDecoration(
                                 color: ColorPalette()
-                                    .primaryGradientStart
+                                    .primaryGradientEnd
                                     .withOpacity(0.7),
                                 borderRadius: BorderRadius.only(
                                     topRight: Radius.circular(15.0),
@@ -390,6 +370,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                     cItem.prodScore.toString(),
                                     style: GoogleFonts.sourceSansPro(
                                         fontSize: 13.0,
+                                        color: ColorPalette().textInverseColor,
                                         fontWeight: FontWeight.bold),
                                   )
                                 ],
@@ -410,7 +391,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 Padding(
                   padding: EdgeInsets.only(left: 10.0),
                   child: Text(
-                    cItem.prodMenu!,
+                    cItem.prodType!,
                     style: GoogleFonts.bebasNeue(
                         fontSize: 15.0,
                         fontWeight: FontWeight.w400,
